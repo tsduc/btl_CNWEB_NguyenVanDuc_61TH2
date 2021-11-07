@@ -1,0 +1,60 @@
+/* CSS cho phần nav */
+.owl-prev {
+    position: absolute;
+    left: 0px; 
+    top: 20%;
+    align-items: center;
+    
+}
+.owl-next {
+    position: absolute;
+    right: 0px; 
+    top: 20%;
+    align-items: center;
+    
+}
+.owl-prev span, .owl-next span{
+    height: 60px;
+    font-size: 40px;
+}
+.owl-carousel .owl-dots.disabled,.owl-carousel .owl-nav.disabled{display:flex}
+.owl-carousel .owl-nav button.owl-next,.owl-carousel .owl-nav button.owl-prev {
+    background: rgba(255,255,255,.9);
+    color: inherit;
+    border: none;
+    padding: 0!important;
+    font: inherit;
+}
+.owl-carousel .owl-nav button.owl-next{
+    box-shadow: -6px 0 4px rgb(0 0 0 / 5%), -4px 0 4px rgb(0 0 0 / 9%);
+    border-radius: 4px 0 0 4px;
+}
+.owl-carousel .owl-nav button.owl-prev{
+    box-shadow: 6px 0 4px rgb(0 0 0 / 5%), 4px 0 4px rgb(0 0 0 / 9%);
+    border-radius: 0 4px 4px 0;
+}
+.owl-theme .owl-nav [class*=owl-] {
+    color: #FFF;
+    font-size: 14px;
+    margin: 0;
+    width: 30px;
+    top: 30%;
+    height: 60px;
+    align-items: center;
+    padding: 4px 7px;
+    background: rebeccapurple;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+ /* CSS cho phần dots */ 
+
+.owl-stage{
+    transition: all 2s ease 2s;
+}
+.item{
+    margin: auto;
+    display: flex;
+    width: fit-content;
+}
