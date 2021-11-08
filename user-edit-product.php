@@ -6,21 +6,13 @@ $acc = select_one($sql);
 $sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
 $id_user = select_one($sql);
 //get input
-//$fields = explode(",","cid,img,title,code,description,body,status");
-//print_r($fields);exit();
 $data = array();
 $productid = isset($_REQUEST["productid"]) ? $_REQUEST["productid"] : 0;
-//foreach $fields o day
 $quantity = isset($_REQUEST["quantity"]) ? $_REQUEST["quantity"] : "";
-//end foreach
 //tao sql
 $sql = "UPDATE grab_cart SET quantity = '$quantity' WHERE productid ={$productid} AND userid = {$id_user["id"]};";
-//foreach $fields o day
-// chu phan tu dau tien ko co [,]
-// chu y dung ham sql_str
-//echo $sql;exit();
+
 $ret = exec_update($sql);
-//print_r($ret);exit();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -82,7 +74,7 @@ $ret = exec_update($sql);
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

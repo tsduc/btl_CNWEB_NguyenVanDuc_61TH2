@@ -2,21 +2,14 @@
 include("lib_db.php");
 $sql = "SELECT * FROM account_login order by id desc limit 1";
 $acc = select_one($sql);
-if (isset($acc)) {
-    $sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
-}
+
+$sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
+
 $id_user = select_one($sql);
-session_start();
-if (isset($acc["username"])) {
-    $_SESSION["username"] = "$acc[username]";
-    include("check-logged.php");
-    checkLoggedUser($_SESSION["username"]);
-} else {
-    echo "
-        <script type='text/javascript'>
-        window.location.href='login.php';
-        </script>";
-}
+
+$_SESSION["username"] = "$acc[username]";
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -31,12 +24,12 @@ if (isset($acc["username"])) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/respon.css">
     <link rel="stylesheet" href="css/caroucell.css">
-
 </head>
 
 <body>
@@ -750,116 +743,15 @@ if (isset($acc["username"])) {
                 <div class="content-top">
                     <p>Săn Sale Online Mỗi Ngày</p>
                 </div>
-                <div class="product-top">
-                    <div class="owl-carousel owl-theme" id="product-top">
-                        <?php for ($i = 0; $i <= 2; $i++) { ?>
-                            <?php $x = 5 * $i; ?>
-                            <?php $dem = $dem + 1; ?>
-                            <?php $sql = "SELECT * FROM `grab_content` LIMIT 5 OFFSET  $x"; ?>
-                            <?php $datas = select_list($sql); ?>
-                            <div class="item">
-                                <?php foreach ($datas as $data) { ?>
-                                    <a class="col-product" href="chi-tiet.php?id=<?php echo $data["id"]; ?>">
-                                        <div class="img-product">
-                                            <img class="d-block w-100" src="images/<?php echo $data["avatar"]; ?>">
-                                        </div>
-                                        <div class="infor-product">
-                                            <p class="icon-product"><img src="images/gift-icon4-50x50.png" alt=""><span> Giảm
-                                                    sốc</span></p>
-                                            <h6>
-                                                <?php echo $data["name"]; ?>
-                                            </h6>
-                                            <?php $arrsize = (explode(" , ", $data["size"])); ?>
-
-                                            <?php if (count($arrsize) == 1) { ?>
-                                                <?php echo ""; ?>
-                                            <?php } ?>
-                                            <?php if (count($arrsize) > 1) { ?>
-                                                <div class="inch">
-                                                    <span><?php echo $arrsize[0]; ?></span>
-                                                    <span><?php echo $arrsize[1]; ?></span>
-                                                </div>
-                                            <?php } ?>
-                                            <p>
-                                                <?php echo $data["payment_type"]; ?>
-                                            </p>
-                                            <p><del>
-                                                    <?php echo $data["discount"]; ?>₫
-                                                </del>-
-                                                <?php echo $data["percent"]; ?>%
-                                            </p>
-                                            <p><strong>
-                                                    <?php $discount = $data['discount'] ?>
-                                                    <?php $percent = $data['percent'] ?>
-                                                    <?php $price = $discount * (1 - ($percent / 100)) ?>
-                                                    <td><?php echo ($price); ?>₫</td>
-                                                </strong></p>
-                                            <p>
-                                                <?php echo $data["gift"]; ?>
-                                            </p>
-                                            <p class="stars">
-                                                <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
-                                                <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
-                                                <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
-                                                <img src="images/z2827202136548_08821aa9eaae8d27498a71d64873152c.jpg" alt="">
-                                                <img src="images/z2827202137090_d53289eef842c465bc46de45a5e59871.jpg" alt="">
-                                                <span>124</span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
             </div>
             <!--  id="slider" -->
-            <?php for ($sl = 1; $sl <= 8; $sl++) { ?>
-                <?php switch ($sl) {
-                    case 1:
-                        echo '<div class="tivi">
-                            <div class="owl-carousel owl-theme" id="tivi">';
-                        break;
-                    case 2:
-                        echo '<div class="refrigeration">
-                        <div class="owl-carousel owl-theme" id="refrigeration">';
-                        break;
-                    case 3:
-                        echo '<div class="water-purifier">
-                            <div class="owl-carousel owl-theme" id="water-purifier">';
-                        break;
-                    case 4:
-                        echo '<div class="appliances">
-                        <div class="owl-carousel owl-theme" id="appliances">';
-                        break;
-                    case 5:
-                        echo '<div class="bikes">
-                        <div class="owl-carousel owl-theme" id="bikes">';
-                        break;
-                    case 6:
-                        echo '<div class="phones">
-                        <div class="owl-carousel owl-theme" id="phones">';
-                        break;
-                    case 7:
-                        echo '<div class="accessory">
-                            <div class="owl-carousel owl-theme" id="accessory">';
-                        break;
-                    case 8:
-                        echo '<div class="smartWatch">
-                            <div class="owl-carousel owl-theme" id="smartWatch">';
-                        break;
-                    default:
-                        echo 'default';
-                        break;
-                } ?>
-                <?php $x = 5 * $dem; ?>
-                <?php for ($i = 0; $i <= 1; $i++) { ?>
-                    <?php $x = $x + 5 * $i; ?>
-                    <?php $dem = $dem + 1; ?>
-                    <?php $sql = "SELECT * FROM `grab_content` LIMIT 5 OFFSET  $x"; ?>
-                    <?php $datas = select_list($sql); ?>
-                    <div class="item">
-                        <?php foreach ($datas as $data) { ?>
+            <?php for ($sl = 0; $sl <= 8; $sl++) { ?>
+                <?php $x = 10 * $sl; ?>
+                <?php $sql = "SELECT * FROM `grab_content` LIMIT 10 OFFSET  $x"; ?>
+                <?php $datas = select_list($sql); ?>
+                <div class="list-product">
+                    <?php foreach ($datas as $data) { ?>
+                        <div>
                             <a class="product" href="chi-tiet.php?id=<?php echo $data["id"]; ?>">
                                 <div class="img-product">
                                     <img class="d-block w-100" src="images/<?php echo $data["avatar"]; ?>">
@@ -873,7 +765,7 @@ if (isset($acc["username"])) {
                                     <?php $arrsize = (explode(" , ", $data["size"])); ?>
 
                                     <?php if (count($arrsize) == 1) { ?>
-                                        <?php echo ""; ?>
+                                        <span><?php echo $arrsize[0]; ?></span>
                                     <?php } ?>
                                     <?php if (count($arrsize) > 1) { ?>
                                         <div class="inch">
@@ -886,14 +778,15 @@ if (isset($acc["username"])) {
                                     </p>
                                     <p><del>
 
+
+                                            <?php if ($data["percent"] != 0) {
+                                                echo $data["discount"] . "₫ ";
+                                                echo " -" . $data["percent"] . "%";
+                                            } ?>
+                                            <?php if ($data["percent"] == 0) {
+                                                echo '';
+                                            } ?>
                                         </del>
-                                        <?php if ($data["percent"] != 0) {
-                                            echo $data["discount"] . "₫ ";
-                                            echo " -" . $data["percent"] . "%";
-                                        } ?>
-                                        <?php if ($data["percent"] == 0) {
-                                            echo '';
-                                        } ?>
                                     </p>
                                     <p><strong>
                                             <?php $discount = $data['discount'] ?>
@@ -914,398 +807,418 @@ if (isset($acc["username"])) {
                                     </p>
                                 </div>
                             </a>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
-        </div>
-    </div>
-<?php } ?>
-
-<div class="trademark">
-    <h4>CHUYÊN TRANG THƯƠNG HIỆU</h4>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <a href="#"><img src="images/banner-samsung-390x210-1.png" alt=""></a>
-            </div>
-            <div class="col">
-                <a href="#"><img src="images/banner-giadungonline-new-390x210.png" alt=""></a>
-            </div>
-            <div class="col">
-                <a href="#"><img src="images/banner-dungcugd-390x210.png" alt=""></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="new-product">
-    <h4>SẢN PHẨM MỚI</h4>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <a href="#"><img src="images/product-NewGD3(1)-780x420.png" alt=""></a>
-            </div>
-            <div class="col">
-                <a href="#"><img src="images/product-NewGD3-1-780x420.png" alt=""></a>
-            </div>
-            <div class="col">
-                <a href="#"><img src="images/product-NewGD3-780x420.png" alt=""></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="advice-food">
-    <div class="advice">
-        <div class="advice-title">
-            <p>TƯ VẤN MUA HÀNG</p>
-            <a href="#">Xem thêm <i class="fas fa-angle-right"></i></a>
-        </div>
-        <div class="advice-information">
-            <a class="advice-left" href="#">
-                <div class="advice-img">
-                    <img src="images/buy-robot-giam-gia-9-760x367.jpg" alt="">
+                        </div>
+                    <?php } ?>
                 </div>
-                <p class="advice-info">
-                    Mua ổn áp ROBOT giảm giá SỐC 15%, mua kèm giảm đến 25%
-                </p>
-            </a>
-            <div class="advice-right">
-                <a class="top-bor" href="#">
-                    <img src="images/buy-1-318x154.jpeg" alt="">
-                    <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
-                </a>
-                <a class="bor" href="#">
-                    <img src="images/buy-2--318x154.jpg" alt="">
-                    <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
-                </a>
-                <a class="bor" href="#">
-                    <img src="images/buy-3-318x154.jpg" alt="">
-                    <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
-                </a>
-                <a class="bor" href="#">
-                    <img src="images/buy-4-318x154 (1).jpg" alt="">
-                    <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
-                </a>
-                <a class="bot-bor" href="#">
-                    <img src="images/buy-5-318x154 (1).jpg" alt="">
-                    <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="food">
-        <div class="food-title">
-            <p>MÓN NGON MỖI NGÀY</p>
-            <a href="#">Xem thêm ›</a>
-        </div>
-        <div class="food-information">
-            <a class="food-top" href="#">
-                <div>
-                    <img src="images/buy-60-620x620.jpg" alt="">
-                    <p>Cách làm bánh nậm không cần lá chuối cực thơm ngon, cực đơn giản tại nhà</p>
-                    <span>Dễ • Làm trong 20’</span>
+            <?php } ?>
+
+            <div class="trademark">
+                <h4>CHUYÊN TRANG THƯƠNG HIỆU</h4>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#"><img src="images/banner-samsung-390x210-1.png" alt=""></a>
+                        </div>
+                        <div class="col">
+                            <a href="#"><img src="images/banner-giadungonline-new-390x210.png" alt=""></a>
+                        </div>
+                        <div class="col">
+                            <a href="#"><img src="images/banner-dungcugd-390x210.png" alt=""></a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-            <a class="food-bot" href="#">
-                <img src="images/buy-66-620x620-1.jpg" alt="">
-                <p>Cách bảo quản phở tươi, bánh phở và phở khô dùng được lâu và ngon nhất</p>
-            </a>
-        </div>
-    </div>
-</div>
+            </div>
 
-<div class="more-search">
-    <p>Tìm kiếm nhiều:</p>
-    <a href="#">• Iphone 13</a>
-    <a href="#">• Món ngon mỗi ngày</a>
-    <a href="#">• Tivi Sony</a>
-    <a href="#">Thiết bị y tế</a>
-    <a href="#">Đồ dùng mẹ và bé</a>
-    <a href="#">• Máy giặt mới 2021</a>
-    <a href="#">• Máy giặt Midea</a>
-    <a href="#">• Tư vấn Đồng hồ</a>
-    <a href="#">• Máy giặt LG</a>
-    <a href="#">• Máy lạnh mới 2021</a>
-    <a href="#">• Máy lạnh Electrolux</a>
-    <a href="#">• Máy lạnh LG</a>
-    <a href="#">• Iphone 13 mới</a>
-</div>
+            <div class="new-product">
+                <h4>SẢN PHẨM MỚI</h4>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#"><img src="images/product-NewGD3(1)-780x420.png" alt=""></a>
+                        </div>
+                        <div class="col">
+                            <a href="#"><img src="images/product-NewGD3-1-780x420.png" alt=""></a>
+                        </div>
+                        <div class="col">
+                            <a href="#"><img src="images/product-NewGD3-780x420.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="discount">
-    <div class="discount-top">
-        <span class="animate-dot"></span>
-        <div class="bonus-fifth">
-            <a href="#"><img src="images/logoBHXnew.png" alt=""></a>
-            <span>Tặng 5 lần FREEship (tối đa 15k)</span>
-        </div>
-        <span class="promotion-mwg">(Đây là khuyến mãi của website cùng tập đoàn MWG)</span>
-        <span class="close-bhx">
-            Không hiển thị lại lần sau
-            <img onclick="closeBhx()" src="images/icon_Close.png" alt="">
-        </span>
-    </div>
 
-    <div class="discount-main">
-        <div class="get-code">
-            <span><b>Tặng thêm mã giảm 10%</b></span>
-            <input type="text" placeholder="Nhập email*">
-            <input type="text" placeholder="Nhập SĐT*">
-            <button type="button">NHẬN MÃ</button>
-            <div class="first-person">*Áp dụng cho khách lần đầu mua hàng tại BachhoaXANH</div>
-        </div>
-        <div class="discount-product">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-1_300x300.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>94.500₫</strong>
-                                <del>136.000₫</del>
-                                <span>-31%</span>
+
+            <div class="advice-food">
+                <div class="advice">
+                    <div class="advice-title">
+                        <p>TƯ VẤN MUA HÀNG</p>
+                        <a href="#">Xem thêm <i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div class="advice-information">
+                        <a class="advice-left" href="#">
+                            <div class="advice-img">
+                                <img src="images/buy-robot-giam-gia-9-760x367.jpg" alt="">
+                            </div>
+                            <p class="advice-info">
+                                Mua ổn áp ROBOT giảm giá SỐC 15%, mua kèm giảm đến 25%
+                            </p>
+                        </a>
+                        <div class="advice-right">
+                            <a class="top-bor" href="#">
+                                <img src="images/buy-1-318x154.jpeg" alt="">
+                                <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
+                            </a>
+                            <a class="bor" href="#">
+                                <img src="images/buy-2--318x154.jpg" alt="">
+                                <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
+                            </a>
+                            <a class="bor" href="#">
+                                <img src="images/buy-3-318x154.jpg" alt="">
+                                <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
+                            </a>
+                            <a class="bor" href="#">
+                                <img src="images/buy-4-318x154 (1).jpg" alt="">
+                                <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
+                            </a>
+                            <a class="bot-bor" href="#">
+                                <img src="images/buy-5-318x154 (1).jpg" alt="">
+                                <p>Nhận ưu đãi đến 300k khi nhập mã giảm giá và thanh toán qua VNPAY QR</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="food">
+                    <div class="food-title">
+                        <p>MÓN NGON MỖI NGÀY</p>
+                        <a href="#">Xem thêm ›</a>
+                    </div>
+                    <div class="food-information">
+                        <a class="food-top" href="#">
+                            <div>
+                                <img src="images/buy-60-620x620.jpg" alt="">
+                                <p>Cách làm bánh nậm không cần lá chuối cực thơm ngon, cực đơn giản tại nhà</p>
+                                <span>Dễ • Làm trong 20’</span>
                             </div>
                         </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-2_300x300.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>10.000₫</strong>
-                                <del>15.000₫</del>
-                                <span>-33%</span>
-                            </div>
-                        </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-3_300x300.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>18.000₫</strong>
-                                <del>24.000₫</del>
-                                <span>-25%</span>
-                            </div>
-                        </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-4-202110071739169640.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>54.500₫</strong>
-                                <del>60.000₫</del>
-                                <span>-10%</span>
-                            </div>
-                        </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-5_300x300.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>19.500₫</strong>
-                                <del>23.000₫</del>
-                                <span>-15%</span>
-                            </div>
-                        </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-6.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>15.600₫</strong>
-                                <del>17.000₫</del>
-                                <span>-8%</span>
-                            </div>
-                        </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="infor-price" href="#">
-                            <img src="images/bhx-7.jpg" alt="">
-                            <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
-                            <div class="price">
-                                <strong>30.500₫</strong>
-                                <del>34.500₫</del>
-                                <span>-12%</span>
-                            </div>
-                        </a>
-                        <a class="buy-product" href="#">Mua</a>
-                    </div>
-                    <div class="col">
-                        <a class="bhx-next" href="#">
-                            <img src="images/dmxtgdd-next.png" alt="">
-                            <span>Xem <b>10.000+</b> <br> sản phẩm khác</span>
+                        <a class="food-bot" href="#">
+                            <img src="images/buy-66-620x620-1.jpg" alt="">
+                            <p>Cách bảo quản phở tươi, bánh phở và phở khô dùng được lâu và ngon nhất</p>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-<hr>
-<!-- footer -->
-<div class="footer">
-    <section class="service">
-        <div class="container service-container">
-            <div class="row">
-                <div class="col-3 service-left">
-                    <ul>
-                        <li>
-                            <a href="#">DV vệ sinh máy lạnh, máy giặt, quạt</a>
-                        </li>
-                        <li>
-                            <a href="#"><b>Dịch vụ Sửa Điện - Nước </b><span>Mới</span></a>
-                            <br>
-                            <p> Dành cho Gia đình, Doanh nghiệp ở TP.HCM</p>
-                        </li>
-                        <li>
-                            <a href="#">Lịch sử mua hàng</a>
-                        </li>
-                        <li>
-                            <a href="#">Cộng tác bán hàng cùng TGDĐ</a>
-                        </li>
-                        <li>
-                            <a href="#">Tìm hiểu về mua trả góp</a>
-                        </li>
-                        <li>
-                            <a href="#">Xem thêm <i onclick="showMore()" class="fas fa-sort-down"></i></a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Chính sách bảo hành</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Chính sách đổi trả</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Giao hàng, lắp đặt</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Hướng dẫn mua online</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Bán hàng doanh nghiệp</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Phiếu mua hàng</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">In hóa đơn điện tử</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Quy chế hoạt động</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Nội quy cửa hàng</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Chất lượng phục vụ</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Cảnh báo giả mạo</a>
-                        </li>
-                        <li class="show-more">
-                            <a href="#">Chính sách khui hộp sản phẩm Apple</a>
-                        </li>
 
-                    </ul>
-                </div>
-                <div class="col-3 service-left">
-                    <ul>
-                        <li><a href="#">Giới thiệu công ty (MWG.vn)</a></li>
-                        <li><a href="#">Tuyển dụng</a></li>
-                        <li><a href="#">Gửi góp ý, khiếu nại</a></li>
-                        <li><a href="#">Tìm siêu thị (1783 shop)</a></li>
-                        <li><a href="#">Xem bản mobile</a></li>
+            <div class="more-search">
+                <p>Tìm kiếm nhiều:</p>
+                <a href="#">• Iphone 13</a>
+                <a href="#">• Món ngon mỗi ngày</a>
+                <a href="#">• Tivi Sony</a>
+                <a href="#">Thiết bị y tế</a>
+                <a href="#">Đồ dùng mẹ và bé</a>
+                <a href="#">• Máy giặt mới 2021</a>
+                <a href="#">• Máy giặt Midea</a>
+                <a href="#">• Tư vấn Đồng hồ</a>
+                <a href="#">• Máy giặt LG</a>
+                <a href="#">• Máy lạnh mới 2021</a>
+                <a href="#">• Máy lạnh Electrolux</a>
+                <a href="#">• Máy lạnh LG</a>
+                <a href="#">• Iphone 13 mới</a>
+            </div>
 
-                    </ul>
-                </div>
-                <div class="col-3 service-right">
-                    <ul>
-                        <li><strong>Tổng đài hỗ trợ </strong><span> (Miễn phí gọi)</span></li>
-                        <li>
-                            <p>Gọi mua:</p> <a href="#"><strong>1800.1061</strong></a> (7:30 - 22:00)
-                        </li>
-                        <li>
-                            <p>Kỹ thuật:</p><a href="#"><strong>1800.1764</strong></a> (7:30 - 22:00)
-                        </li>
-                        <li>
-                            <p>Khiếu nại:</p><a href="#"><strong>1800.1063</strong></a> (8:00 - 21:00)
-                        </li>
-                        <li>
-                            <p>Bảo hành:</p><a href="#"><strong>1800.1065</strong></a> (8:00 - 21:00)
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3">
-                    <div class="facebook-dmx">
-                        <a href="#"><img class="facebook" src="images/icons8-facebook-circled-48.png" />1817.4k
-                            Fan </a>
-                        <a href="#"><img class="dmx" src="images/logo-the-gioi-di-dong.jpg" />571k Đăng
-                            ký</a>
+            <div class="discount">
+                <div class="discount-top">
+                    <span class="animate-dot"></span>
+                    <div class="bonus-fifth">
+                        <a href="#"><img src="images/logoBHXnew.png" alt=""></a>
+                        <span>Tặng 5 lần FREEship (tối đa 15k)</span>
                     </div>
-                    <div class="sponsor">
-                        <a class="logo-infor" href="#"><img src="images/z2827202133656_8f32b1a19a93ee020c30dc280a0beb14.jpg" alt=""></a>
-                        <a class="logo-xu" href="#"><img src="images/z2827202132920_c1c1c5f8fa233cacc9a0a6160302a512.jpg" alt=""></a>
-                        <a class="logo-dmca" href="#"><img src="images/z2827202132918_a890e7ead06a0f96e8a1111a788dc3b4.jpg" alt=""></a>
-                        <a class="logo-ncsc" href="#"><img src="images/ncsc.PNG" alt=""></a>
+                    <span class="promotion-mwg">(Đây là khuyến mãi của website cùng tập đoàn MWG)</span>
+                    <span class="close-bhx">
+                        Không hiển thị lại lần sau
+                        <img onclick="closeBhx()" src="images/icon_Close.png" alt="">
+                    </span>
+                </div>
+
+                <div class="discount-main">
+                    <div class="get-code">
+                        <span><b>Tặng thêm mã giảm 10%</b></span>
+                        <input type="text" placeholder="Nhập email*">
+                        <input type="text" placeholder="Nhập SĐT*">
+                        <button type="button">NHẬN MÃ</button>
+                        <div class="first-person">*Áp dụng cho khách lần đầu mua hàng tại BachhoaXANH</div>
                     </div>
-                    <div class="corporation">
-                        <p>Website cùng tập đoàn</p>
-                        <a class="logo-tgdd" href="#"><img src="images/logo-tgdd.svg.png" alt=""></a>
-                        <a class="logo-bhx" href="#"><img src="images/z2821266547455_f145e5f37ff36adf05b4c9d66cfc4ef8.jpg" alt=""></a>
-                        <a class="logo-haiam" href="#"><img src="images/z2821266545876_25222914e59d5acb6e871d7f99688c72.jpg" alt=""></a>
+                    <div class="discount-product">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-1_300x300.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>94.500₫</strong>
+                                            <del>136.000₫</del>
+                                            <span>-31%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-2_300x300.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>10.000₫</strong>
+                                            <del>15.000₫</del>
+                                            <span>-33%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-3_300x300.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>18.000₫</strong>
+                                            <del>24.000₫</del>
+                                            <span>-25%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-4-202110071739169640.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>54.500₫</strong>
+                                            <del>60.000₫</del>
+                                            <span>-10%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-5_300x300.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>19.500₫</strong>
+                                            <del>23.000₫</del>
+                                            <span>-15%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-6.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>15.600₫</strong>
+                                            <del>17.000₫</del>
+                                            <span>-8%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="infor-price" href="#">
+                                        <img src="images/bhx-7.jpg" alt="">
+                                        <span>Nước giặt Surf hương nước hoa túi 3 lít</span>
+                                        <div class="price">
+                                            <strong>30.500₫</strong>
+                                            <del>34.500₫</del>
+                                            <span>-12%</span>
+                                        </div>
+                                    </a>
+                                    <a class="buy-product" href="#">Mua</a>
+                                </div>
+                                <div class="col">
+                                    <a class="bhx-next" href="#">
+                                        <img src="images/dmxtgdd-next.png" alt="">
+                                        <span>Xem <b>10.000+</b> <br> sản phẩm khác</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        <hr>
+        <!-- footer -->
+        <div class="footer">
+            <section class="service">
+                <div class="container service-container">
+                    <div class="row">
+                        <div class="col-3 service-left">
+                            <ul>
+                                <li>
+                                    <a href="#">DV vệ sinh máy lạnh, máy giặt, quạt</a>
+                                </li>
+                                <li>
+                                    <a href="#"><b>Dịch vụ Sửa Điện - Nước </b><span>Mới</span></a>
+                                    <br>
+                                    <p> Dành cho Gia đình, Doanh nghiệp ở TP.HCM</p>
+                                </li>
+                                <li>
+                                    <a href="#">Lịch sử mua hàng</a>
+                                </li>
+                                <li>
+                                    <a href="#">Cộng tác bán hàng cùng TGDĐ</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tìm hiểu về mua trả góp</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xem thêm <i onclick="showMore()" class="fas fa-sort-down"></i></a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Chính sách bảo hành</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Chính sách đổi trả</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Giao hàng, lắp đặt</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Hướng dẫn mua online</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Bán hàng doanh nghiệp</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Phiếu mua hàng</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">In hóa đơn điện tử</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Quy chế hoạt động</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Nội quy cửa hàng</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Chất lượng phục vụ</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Cảnh báo giả mạo</a>
+                                </li>
+                                <li class="show-more">
+                                    <a href="#">Chính sách khui hộp sản phẩm Apple</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-3 service-left">
+                            <ul>
+                                <li><a href="#">Giới thiệu công ty (MWG.vn)</a></li>
+                                <li><a href="#">Tuyển dụng</a></li>
+                                <li><a href="#">Gửi góp ý, khiếu nại</a></li>
+                                <li><a href="#">Tìm siêu thị (1783 shop)</a></li>
+                                <li><a href="#">Xem bản mobile</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="col-3 service-right">
+                            <ul>
+                                <li><strong>Tổng đài hỗ trợ </strong><span> (Miễn phí gọi)</span></li>
+                                <li>
+                                    <p>Gọi mua:</p> <a href="#"><strong>1800.1061</strong></a> (7:30 - 22:00)
+                                </li>
+                                <li>
+                                    <p>Kỹ thuật:</p><a href="#"><strong>1800.1764</strong></a> (7:30 - 22:00)
+                                </li>
+                                <li>
+                                    <p>Khiếu nại:</p><a href="#"><strong>1800.1063</strong></a> (8:00 - 21:00)
+                                </li>
+                                <li>
+                                    <p>Bảo hành:</p><a href="#"><strong>1800.1065</strong></a> (8:00 - 21:00)
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <div class="facebook-dmx">
+                                <a href="#"><img class="facebook" src="images/icons8-facebook-circled-48.png" />1817.4k
+                                    Fan </a>
+                                <a href="#"><img class="dmx" src="images/logo-the-gioi-di-dong.jpg" />571k Đăng
+                                    ký</a>
+                            </div>
+                            <div class="sponsor">
+                                <a class="logo-infor" href="#"><img src="images/z2827202133656_8f32b1a19a93ee020c30dc280a0beb14.jpg" alt=""></a>
+                                <a class="logo-xu" href="#"><img src="images/z2827202132920_c1c1c5f8fa233cacc9a0a6160302a512.jpg" alt=""></a>
+                                <a class="logo-dmca" href="#"><img src="images/z2827202132918_a890e7ead06a0f96e8a1111a788dc3b4.jpg" alt=""></a>
+                                <a class="logo-ncsc" href="#"><img src="images/ncsc.PNG" alt=""></a>
+                            </div>
+                            <div class="corporation">
+                                <p>Website cùng tập đoàn</p>
+                                <a class="logo-tgdd" href="#"><img src="images/logo-tgdd.svg.png" alt=""></a>
+                                <a class="logo-bhx" href="#"><img src="images/z2821266547455_f145e5f37ff36adf05b4c9d66cfc4ef8.jpg" alt=""></a>
+                                <a class="logo-haiam" href="#"><img src="images/z2821266545876_25222914e59d5acb6e871d7f99688c72.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
-    <div class="title-bottom">
-        <section>
-            <p>© 2018. Công ty cổ phần Thế Giới Di Động. GPDKKD: 0303217354 do sở KH & ĐT TP.HCM cấp ngày
-                02/01/2007. GPMXH: 238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 04/06/2020.
-                <br>
-                Địa chỉ: 128 Trần Quang Khải, P. Tân Định, Q.1, TP.Hồ Chí Minh. Điện thoại: 028 38125960.
-                Email:
-                cskh@thegioididong.com. Chịu trách nhiệm nội dung: Huỳnh Văn Tốt. <a href="#">Xem chính sách
-                    sử
-                    dụng</a>
-            </p>
-        </section>
+            <div class="title-bottom">
+                <section>
+                    <p>© 2018. Công ty cổ phần Thế Giới Di Động. GPDKKD: 0303217354 do sở KH & ĐT TP.HCM cấp ngày
+                        02/01/2007. GPMXH: 238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 04/06/2020.
+                        <br>
+                        Địa chỉ: 128 Trần Quang Khải, P. Tân Định, Q.1, TP.Hồ Chí Minh. Điện thoại: 028 38125960.
+                        Email:
+                        cskh@thegioididong.com. Chịu trách nhiệm nội dung: Huỳnh Văn Tốt. <a href="#">Xem chính sách
+                            sử
+                            dụng</a>
+                    </p>
+                </section>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 
 
 
 
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/index.js"></script>
-<script type="text/javascript">
-    $('#product-top, #tivi, #refrigeration, #water-purifier, #appliances, #bikes, #phones, #accessory, #smartWatch').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        dots: false,
-        items: 1
-    })
-</script>
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript">
+        $('.list-product').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            speed: 300,
+            responsive: [{
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                    }
+                },
+                {
+                    breakpoint: 769,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 415,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                }
+            ]
+        });
+    </script>
 </body>
 
 </html>

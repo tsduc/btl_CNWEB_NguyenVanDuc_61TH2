@@ -16,13 +16,9 @@ if (isset($acc["username"])) {
         window.location.href='login.php';
         </script>";
 }
-//get input
 //tao sql
 $sql = "select * from grab_category";
-//echo $sql;exit();
-//thuc thi cau lenh sql
 $cates = exec_select($sql);
-//print_r($cates);exit();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -84,7 +80,7 @@ $cates = exec_select($sql);
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

@@ -15,7 +15,11 @@
         display: flex;
         width: 100%;
         border-radius: 4px;
+        margin: 10px 0 0 0;
     }
+    .header-top a, .header-top a img{
+        width: 100%;
+    } 
     .banner-sale{
         display: none;
     }
@@ -24,7 +28,7 @@
     }
     .product{
         width: 100%;
-        height: auto;
+        height: 470px;
     }
     .product a{
         height: 100%;
@@ -34,16 +38,35 @@
     }
     .image-product{
         width: 100%;
-        height: 140px;
+        height: 190px;
+        align-items: center;
         padding: 0;
         margin: 0;
     }
     .image-product img{
         width: 90%;
-        margin-top: -60px; 
+        margin: 0 auto; 
     }
 
+    .section-address, .order-history, .header-content, .carousel-indicators, .header-bot, .section-cart span{
+        display: none;
+    }
+    .banner-top-hiden{
+        width: 0;
+    }
+    .banner-top-left, .banner-top-right{
+        display: none;
+    }
+    .header-mid section{
+        width: 100%;
+    }
     /* saleeveryday */
+    .sale-everyday {
+        margin-bottom: 0px;
+    }
+    .list-product{
+        margin-top: 20px;
+    }
     .content-top{
         font-size: 16px;
     }
@@ -55,6 +78,16 @@
     }
     .col-product-mobi{
         margin-right: 0;
+    }
+    .advice-food{
+        display: none;
+    }
+    .discount{
+        display: none;
+    }
+    /* footer */
+    .footer{
+        display: none;
     }
 }
 @media (min-width: 600px) and (max-width: 767px){
@@ -70,21 +103,53 @@
     }
     .product{
         width: 100%;
-        height: auto;
+        height: 430px;
     }
     .image-product{
         width: 100%;
+        height: 190px;
+        align-items: center;
         margin: 0;
         padding: 0;
     }
     .image-product img{
         width: 90%;
+        margin: 0 auto;
     }
+    .header-top a, .header-top a img{
+        width: 100%;
+    } 
     .pr{
         display: none;
     }
 
+    .banner-top-hiden{
+        width: 0;
+    }
+    .banner-top-left{
+        display: none;
+    }
+
+    .banner-top-hiden{
+        width: 0;
+    }
+    .banner-top-left, .banner-top-right{
+        display: none;
+    }
+
+    .section-address, .order-history, .header-content{
+        display: none;
+    }
+    .header-mid section{
+        width: 100%;
+    }
     /* saleeveryday */
+    .sale-everyday {
+        margin-bottom: 0px;
+    }
+    .list-product{
+        margin-top: 20px;
+    }
     .content-top{
         font-size: 18px;
     }
@@ -96,6 +161,37 @@
     }
     .col-product-tb{
         margin-right: 0;
+    }
+    .advice-food{
+        display: none;
+    }
+    .discount{
+        display: none;
+    }
+    /* footer */
+    .footer{
+        width: 100%;
+    }
+    .footer .service .row .col-3{
+        max-width: 50%;
+    }
+    .service{
+        width: 100%;
+        margin: auto;
+    }
+    .title-bottom{
+        width: 100%;
+        margin: auto;
+        height: 66px;
+        background-color: #f1f1f1;
+        padding: 15px 0;
+    }
+    .title-bottom section{
+        width: 100%;
+        margin: auto;
+    }
+    .title-bottom p{
+        font-size: 0.4rem;
     }
 
 }
@@ -115,18 +211,43 @@
     }
     .product{
         width: 100%;
-        height: auto;
+        height: 460px;
     }
     .image-product{
         width: 100%;
+        height: 240px;
+        align-items: center;
         margin: 0;
         padding: 0;
     }
     .image-product img{
         width: 90%;
+        margin: 0 auto;
     }
 
+    .header-top a, .header-top a img{
+        width: 100%;
+    } 
+    .order-history, .header-content{
+        display: none;
+    }
+
+    .banner-top-hiden{
+        width: 0;
+    }
+    .banner-top-left{
+        display: none;
+    }
+    .header-mid section{
+        width: 100%;
+    }
     /* saleeveryday */
+    .sale-everyday {
+        margin-bottom: 0px;
+    }
+    .list-product{
+        margin-top: 20px;
+    }
     .content-top{
         font-size: 20px;
     }
@@ -138,6 +259,34 @@
     }
     .col-product-min{
         margin-right: 0;
+    }
+    .advice-food{
+        display: none;
+    }
+    /* footer */
+    .footer{
+        width: 100%;
+    }
+    .footer .service .row .col-3{
+        width: 33.33%;
+    }
+    .service{
+        width: 100%;
+        margin: auto;
+    }
+    .title-bottom{
+        width: 100%;
+        margin: auto;
+        height: 66px;
+        background-color: #f1f1f1;
+        padding: 15px 0;
+    }
+    .title-bottom section{
+        width: 100%;
+        margin: auto;
+    }
+    .title-bottom p{
+        font-size: 0.5rem;
     }
 }
 @media (min-width: 1024px)  and (max-width: 1919px){
@@ -158,7 +307,29 @@
         display: none;
     }
 
+    .banner-top-hiden{
+        width: 0;
+    }
+    .banner-top-left{
+        display: none;
+    }
+
+    .header-top a, .header-top a img{
+        width: 100%;
+    } 
+    .order-history, .header-content{
+        display: none;
+    }
+    .header-mid section{
+        width: 100%;
+    }
     /* saleeveryday */
+    .sale-everyday {
+        margin-bottom: 0px;
+    }
+    .list-product{
+        margin-top: 20px;
+    }
     .content-top{
         font-size: 24px;
     }
@@ -171,6 +342,43 @@
     .col-product-min{
         margin-right: 0;
     }
+    .advice-title p, .food-title p {
+        font-size: 0.8rem;
+        margin: 0 15px 0 0;
+    }
+    .advice-right p {
+        padding: 0 0 0 10px;
+        margin: 0;
+        font-size: 0.7rem;
+    }
+    .advice-food p {
+        font-size: 0.7rem;
+    }
+    .list-product{
+        margin-bottom: 40px;
+    }
+    /* footer */
+    .footer{
+        width: 100%;
+    }
+    .footer .service .row .col-3{
+        width: 33.33%;
+    }
+    .service{
+        width: 100%;
+        margin: 0;
+    }
+    .title-bottom{
+        width: 100%;
+        margin: 0;
+        height: 66px;
+        background-color: #f1f1f1;
+        padding: 15px 0;
+    }
+    .title-bottom section{
+        width: 100%;
+        margin: 0;
+    }
 }
 @media (min-width: 1920px){
     /* content */
@@ -182,6 +390,9 @@
     }
 
     /* saleeveryday */
+    .sale-everyday {
+        margin-bottom: 0px;
+    }
     .content-top{
         font-size: 28px;
     }

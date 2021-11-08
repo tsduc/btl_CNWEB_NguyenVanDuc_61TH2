@@ -17,10 +17,8 @@ $sql = "insert into grab_cart
 	(quantity, productid, userid)
 	values 
 	('{$quantity}','{$productid}','{$id_user["id"]}')";
-//cid,img,title,code,description,body,status
-//echo $sql;exit();
+
 $ret = exec_update($sql);
-//print_r($ret);exit();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -82,7 +80,7 @@ $ret = exec_update($sql);
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

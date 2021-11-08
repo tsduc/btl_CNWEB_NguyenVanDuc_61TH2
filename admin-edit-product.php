@@ -17,11 +17,8 @@ if (isset($acc["username"])) {
         </script>";
 }
 //get input
-//$fields = explode(",","cid,img,title,code,description,body,status");
-//print_r($fields);exit();
 $data = array();
 $id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
-//foreach $fields o day
 $cid = isset($_REQUEST["cid"]) ? $_REQUEST["cid"] : 0;
 $avatar = isset($_REQUEST["avatar"]) ? $_REQUEST["avatar"] : "";
 $img = isset($_REQUEST["img"]) ? $_REQUEST["img"] : "";
@@ -33,12 +30,8 @@ $color = isset($_REQUEST["color"]) ? $_REQUEST["color"] : "";
 $gift = isset($_REQUEST["gift"]) ? $_REQUEST["gift"] : "";
 $payment = isset($_REQUEST["payment_type"]) ? $_REQUEST["payment_type"] : "";
 $categoryName = isset($_REQUEST["category_name"]) ? $_REQUEST["category_name"] : "";
-//end foreach
 //tao sql
 $sql = "UPDATE grab_content SET ";
-//foreach $fields o day
-// chu phan tu dau tien ko co [,]
-// chu y dung ham sql_str
 $sql .= " cid =  '" . sql_str($cid) . "'";
 $sql .= ", avatar = '$avatar' ";
 $sql .= ", name = '$name' ";
@@ -50,11 +43,8 @@ $sql .= ", gift = '$gift' ";
 $sql .= ", payment_type = '$payment' ";
 $sql .= ", category_name = '$categoryName' ";
 
-//end foreach
 $sql .= " WHERE id =$id";
-//echo $sql;exit();
 $ret = exec_update($sql);
-//print_r($ret);exit();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -116,7 +106,7 @@ $ret = exec_update($sql);
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

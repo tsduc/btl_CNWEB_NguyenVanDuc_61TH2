@@ -21,12 +21,8 @@ if ($id <  1) return;
 //tao sql
 $sql = "select * from grab_content 
 	where id={$id}";
-//echo $sql;exit();
-//thuc thi cau lenh sql
 $result = select_one($sql);
-//print_r($result);exit();
 if (!$result) return;
-//print_r($result);exit();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -88,7 +84,7 @@ if (!$result) return;
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

@@ -620,12 +620,11 @@ a:hover{
 } */
 
 .img-product{
-    height: 215px;
+    height: 240px;
     margin: 60px 0 40px 0;
     align-items: center;
 }  
 .img-product .w-100{
-    width: 200px !important;
     margin: auto;
     padding-top: 10px;
 }  
@@ -633,8 +632,8 @@ a:hover{
     padding-top: 0;
 }
 .stars{
-    display: inline-block;
-
+    height: 13px;
+    align-items: center;
 }
 .stars img{
     width: 13px;
@@ -649,13 +648,16 @@ a:hover{
     margin-bottom: 30px;
     display: block;
 }
+.list-product{
+    margin: 15px 0 20px 0;
+}
 .container, .row, .col{
     margin: 0;
     padding: 0;
 }
 .product{
     width: 240px;
-    height: auto;
+    height: 600px;
     margin: 0;
     padding: 10px;
     float: left;
@@ -697,6 +699,7 @@ a:hover{
 }
 .infor-product p{
     font-weight: 100;
+    display: flex;
 }
 .infor-product strong{
     font-size: 16px;
@@ -784,9 +787,10 @@ a:hover{
 .trademark .row .col, .new-product .row .col{
     margin: 0;
     padding: 0;
+    width: 33%;
 }
 .trademark img, .new-product img{
-    width: 390px;
+    width: 100%;
 }
 .advice-food{
     width: 100%;
@@ -1088,7 +1092,7 @@ hr{
 /* footer */
 .footer{
     width: 100%;
-    margin-top: 10px;
+    margin: 10px auto 0 auto;
 }
 .service{
     width: 1200px;

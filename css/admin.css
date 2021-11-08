@@ -447,7 +447,7 @@ a:hover{
     height: 43px;
 }
 .admin-search tr td img{
-    width: 42px;
+    width: 40px;
 }
 .admin-search table{
     width: 100%;
@@ -526,6 +526,10 @@ a:hover{
     text-align: center;
 }
 
+/* phan trang */
+.pages{
+    text-align: center;
+}
 
 
 

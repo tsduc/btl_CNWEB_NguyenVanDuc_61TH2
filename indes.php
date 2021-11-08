@@ -2,14 +2,21 @@
 include("lib_db.php");
 $sql = "SELECT * FROM account_login order by id desc limit 1";
 $acc = select_one($sql);
-
-$sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
-
+if (isset($acc)) {
+    $sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
+}
 $id_user = select_one($sql);
-
-$_SESSION["username"] = "$acc[username]";
-
-
+session_start();
+if (isset($acc["username"])) {
+    $_SESSION["username"] = "$acc[username]";
+    include("check-logged.php");
+    checkLoggedUser($_SESSION["username"]);
+} else {
+    echo "
+        <script type='text/javascript'>
+        window.location.href='login.php';
+        </script>";
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -24,7 +31,6 @@ $_SESSION["username"] = "$acc[username]";
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css">
@@ -808,108 +814,109 @@ $_SESSION["username"] = "$acc[username]";
                 </div>
             </div>
             <!--  id="slider" -->
-            <?php $dem = 0; ?>
-            <?php for ($sl = 0; $sl <= 8; $sl++) { ?>
+            <?php for ($sl = 1; $sl <= 8; $sl++) { ?>
                 <?php switch ($sl) {
                     case 1:
                         echo '<div class="tivi">
-                            <div class="your-class">';
+                            <div class="owl-carousel owl-theme" id="tivi">';
                         break;
                     case 2:
                         echo '<div class="refrigeration">
-                        <div class="your-class">';
+                        <div class="owl-carousel owl-theme" id="refrigeration">';
                         break;
                     case 3:
                         echo '<div class="water-purifier">
-                            <div class="your-class">';
+                            <div class="owl-carousel owl-theme" id="water-purifier">';
                         break;
                     case 4:
                         echo '<div class="appliances">
-                        <div class="your-class">';
+                        <div class="owl-carousel owl-theme" id="appliances">';
                         break;
                     case 5:
                         echo '<div class="bikes">
-                        <div class="your-class">';
+                        <div class="owl-carousel owl-theme" id="bikes">';
                         break;
                     case 6:
                         echo '<div class="phones">
-                        <div class="your-class">';
+                        <div class="owl-carousel owl-theme" id="phones">';
                         break;
                     case 7:
                         echo '<div class="accessory">
-                            <div class="your-class">';
+                            <div class="owl-carousel owl-theme" id="accessory">';
                         break;
                     case 8:
                         echo '<div class="smartWatch">
-                            <div class="your-class">';
+                            <div class="owl-carousel owl-theme" id="smartWatch">';
                         break;
                     default:
                         echo 'default';
                         break;
                 } ?>
-                <?php $x = 10 * $sl; ?>
+                <?php $x = 5 * $dem; ?>
+                <?php for ($i = 0; $i <= 1; $i++) { ?>
+                    <?php $x = $x + 5 * $i; ?>
+                    <?php $dem = $dem + 1; ?>
+                    <?php $sql = "SELECT * FROM `grab_content` LIMIT 5 OFFSET  $x"; ?>
+                    <?php $datas = select_list($sql); ?>
+                    <div class="item">
+                        <?php foreach ($datas as $data) { ?>
+                            <a class="product" href="chi-tiet.php?id=<?php echo $data["id"]; ?>">
+                                <div class="img-product">
+                                    <img class="d-block w-100" src="images/<?php echo $data["avatar"]; ?>">
+                                </div>
+                                <div class="infor-product">
+                                    <p class="icon-product"><img src="images/gift-icon4-50x50.png" alt=""><span> Giảm
+                                            sốc</span></p>
+                                    <h6>
+                                        <?php echo $data["name"]; ?>
+                                    </h6>
+                                    <?php $arrsize = (explode(" , ", $data["size"])); ?>
 
-                <?php $sql = "SELECT * FROM `grab_content` LIMIT 10 OFFSET  $x"; ?>
-                <?php $datas = select_list($sql); ?>
-                <div class="item">
-                    <?php foreach ($datas as $data) { ?>
-                        <a class="product" href="chi-tiet.php?id=<?php echo $data["id"]; ?>">
-                            <div class="img-product">
-                                <img class="d-block w-100" src="images/<?php echo $data["avatar"]; ?>">
-                            </div>
-                            <div class="infor-product">
-                                <p class="icon-product"><img src="images/gift-icon4-50x50.png" alt=""><span> Giảm
-                                        sốc</span></p>
-                                <h6>
-                                    <?php echo $data["name"]; ?>
-                                </h6>
-                                <?php $arrsize = (explode(" , ", $data["size"])); ?>
+                                    <?php if (count($arrsize) == 1) { ?>
+                                        <?php echo ""; ?>
+                                    <?php } ?>
+                                    <?php if (count($arrsize) > 1) { ?>
+                                        <div class="inch">
+                                            <span><?php echo $arrsize[0]; ?></span>
+                                            <span><?php echo $arrsize[1]; ?></span>
+                                        </div>
+                                    <?php } ?>
+                                    <p>
+                                        <?php echo $data["payment_type"]; ?>
+                                    </p>
+                                    <p><del>
 
-                                <?php if (count($arrsize) == 1) { ?>
-                                    <?php echo ""; ?>
-                                <?php } ?>
-                                <?php if (count($arrsize) > 1) { ?>
-                                    <div class="inch">
-                                        <span><?php echo $arrsize[0]; ?></span>
-                                        <span><?php echo $arrsize[1]; ?></span>
-                                    </div>
-                                <?php } ?>
-                                <p>
-                                    <?php echo $data["payment_type"]; ?>
-                                </p>
-                                <p><del>
-
-                                    </del>
-                                    <?php if ($data["percent"] != 0) {
-                                        echo $data["discount"] . "₫ ";
-                                        echo " -" . $data["percent"] . "%";
-                                    } ?>
-                                    <?php if ($data["percent"] == 0) {
-                                        echo '';
-                                    } ?>
-                                </p>
-                                <p><strong>
-                                        <?php $discount = $data['discount'] ?>
-                                        <?php $percent = $data['percent'] ?>
-                                        <?php $price = $discount * (1 - ($percent / 100)) ?>
-                                        <td><?php echo ($price); ?>₫</td>
-                                    </strong></p>
-                                <p>
-                                    <?php echo $data["gift"]; ?>
-                                </p>
-                                <p class="stars">
-                                    <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
-                                    <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
-                                    <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
-                                    <img src="images/z2827202136548_08821aa9eaae8d27498a71d64873152c.jpg" alt="">
-                                    <img src="images/z2827202137090_d53289eef842c465bc46de45a5e59871.jpg" alt="">
-                                    <span>124</span>
-                                </p>
-                            </div>
-                        </a>
-                    <?php } ?>
-                </div>
-                <?php $dem = $dem + 1; ?>
+                                        </del>
+                                        <?php if ($data["percent"] != 0) {
+                                            echo $data["discount"] . "₫ ";
+                                            echo " -" . $data["percent"] . "%";
+                                        } ?>
+                                        <?php if ($data["percent"] == 0) {
+                                            echo '';
+                                        } ?>
+                                    </p>
+                                    <p><strong>
+                                            <?php $discount = $data['discount'] ?>
+                                            <?php $percent = $data['percent'] ?>
+                                            <?php $price = $discount * (1 - ($percent / 100)) ?>
+                                            <td><?php echo ($price); ?>₫</td>
+                                        </strong></p>
+                                    <p>
+                                        <?php echo $data["gift"]; ?>
+                                    </p>
+                                    <p class="stars">
+                                        <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
+                                        <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
+                                        <img src="images/z2827202137617_0407e521a389e9ab91f4bb536b4c0835.jpg" alt="">
+                                        <img src="images/z2827202136548_08821aa9eaae8d27498a71d64873152c.jpg" alt="">
+                                        <img src="images/z2827202137090_d53289eef842c465bc46de45a5e59871.jpg" alt="">
+                                        <span>124</span>
+                                    </p>
+                                </div>
+                            </a>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
         </div>
     </div>
 <?php } ?>
@@ -1291,34 +1298,13 @@ $_SESSION["username"] = "$acc[username]";
 <script src="js/bootstrap.min.js"></script>
 <script src="js/index.js"></script>
 <script type="text/javascript">
-    $('.your-class').slick({
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 5,
-        speed: 300,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                }
-            },
-            {
-                breakpoint: 740,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                }
-            },
-            {
-                breakpoint: 560,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                }
-            }
-        ]
-    });
+    $('#product-top, #tivi, #refrigeration, #water-purifier, #appliances, #bikes, #phones, #accessory, #smartWatch').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        dots: false,
+        items: 1
+    })
 </script>
 </body>
 

@@ -25,11 +25,8 @@ if ($q) {
     $cond .= " name like '%{$sq}%' ";
     $cond .= " or category_name like '%{$sq}%' ";
 }
-//print_r($_SESSION);
 $sql = "SELECT * FROM grab_user gu left join grab_cart gc  on gc.userid =  gu.id left join grab_content gce on gc.productid = gce.id where gc.userid =  {$id_user["id"]};";
-// $sql = "SELECT * FROM grab_cart, grab_user, grab_content where grab_cart.userid =  {$id_user["id"]} and grab_cart.productid =  grab_content.id";
 $result = select_list($sql);
-echo $id_user["id"];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -93,7 +90,7 @@ echo $id_user["id"];
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

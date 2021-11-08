@@ -18,7 +18,7 @@ if (isset($acc["username"])) {
         </script>";
 }
 $id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
-
+$p = isset($_REQUEST["p"]) ? $_REQUEST["p"] * 1 : 1;
 $q = isset($_REQUEST["q"]) ? $_REQUEST["q"] : '';
 $qsessionname = "___Q___";
 if (!isset($_REQUEST["q"])) {
@@ -26,22 +26,32 @@ if (!isset($_REQUEST["q"])) {
 } else {
     $_SESSION[$qsessionname] = $q;
 }
+
 $cond = "";
 $searchfields = array("", "");
-
-if ($q) {
+if (empty($q)) {
+    $sqlcount = "select count(*) as id  from grab_content";
+    $count = select_one($sqlcount);
+    $total = $count['id'];
+    $nop = 20;
+    $offset = $nop * ($p - 1);
+    $sql = "select * from grab_content limit {$nop} offset {$offset} ";
+    $result = select_list($sql);
+} else {
     $sq = sql_str($q);
     $cond = "where ";
     $cond .= " name like '%{$sq}%' ";
     $cond .= " or category_name like '%{$sq}%' ";
+    $sqlcount = "select count(*) as id from grab_content {$cond}";
+    $count = select_one($sqlcount);
+    $total = $count['id'];
+    $nop = 20;
+    $offset = $nop * ($p - 1);
+    $sql = "select * from grab_content {$cond} limit {$nop} offset {$offset} ";
+    $result = select_list($sql);
 }
-//print_r($_SESSION);
-$sql = "select * from grab_content {$cond} order by id desc
-	 limit 20 ";
-//echo $sql;exit();
-//thuc thi cau lenh sql
-$result = select_list($sql);
-//print_r($result);exit();
+
+$num = ceil($total / $nop);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -700,6 +710,13 @@ $result = select_list($sql);
                 </form>
                 <table>
                     <tr>
+                        <th class="pages" colspan="9">
+                            <?php for ($i = 1; $i <= $num; $i++) { ?>
+                                <a href="admin.php?p=<?php echo $i ?>"><?php echo $i ?></a>
+                            <?php } ?>
+                        </th>
+                    </tr>
+                    <tr>
                         <th>id</th>
                         <th>cid</th>
                         <th>avatar</th>
@@ -714,7 +731,7 @@ $result = select_list($sql);
                         <tr>
                             <td><?php echo $item['id']; ?></td>
                             <td><?php echo $item['cid']; ?></td>
-                            <td><?php echo $item['avatar']; ?></td>
+                            <td><img src="images/<?php echo $item['avatar']; ?>" alt=""></td>
                             <td><?php echo $item['name']; ?></td>
                             <td><?php echo $item['discount']; ?>₫</td>
                             <td>-<?php echo $item['percent']; ?>%</td>
@@ -726,6 +743,8 @@ $result = select_list($sql);
                             <td><a href="admin-delete.php?id=<?php echo $item['id']; ?>">Delete</a></td>
                         </tr>
                     <?php } ?>
+
+                    <?php ?>
                 </table>
             </div>
 

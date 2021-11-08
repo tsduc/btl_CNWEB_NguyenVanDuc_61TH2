@@ -6,10 +6,8 @@ $acc = select_one($sql);
 $sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
 $id_user = select_one($sql);
 $sql = "SELECT * FROM grab_cart WHERE productid = {$id} AND userid = {$id_user["id"]};";
-//echo $sql;exit();
 //thuc thi cau lenh sql
 $result = select_one($sql);
-echo $result["productid"];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -71,7 +69,7 @@ echo $result["productid"];
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="#" class="kitchen">Vào bếp</a>
+                        <a href="logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 
