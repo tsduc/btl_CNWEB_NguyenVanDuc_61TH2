@@ -39,6 +39,7 @@ a:hover{
     background-color: #007bff;
     border: none;
     border-radius: 4px;
+    color: white;
 }
 .sub-registri button input{
     padding: 0 5px;

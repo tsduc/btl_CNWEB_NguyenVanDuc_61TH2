@@ -18,13 +18,8 @@ $payment = isset($_REQUEST["payment_type"]) ? $_REQUEST["payment_type"] : "";
 $categoryName = isset($_REQUEST["category_name"]) ? $_REQUEST["category_name"] : "";
 //tao sql
 $sql = "insert into grab_content 
-	(cid,avatar,img,discount,percent,price,name,size,color,gift,payment_type,category_name)
-	values 
-	('{$cid}','{$avatar}','{$img}','{$discount}','{$percent}','','{$name}','{$size}','{$color}','{$gift}','{$payment}','{$categoryName}')";
-//cid,img,title,code,description,body,status
-//echo $sql;exit();
+	(cid,avatar,img,discount,percent,price,name,size,color,gift,payment_type,category_name) values ('{$cid}','{$avatar}','{$img}','{$discount}','{$percent}','','{$name}','{$size}','{$color}','{$gift}','{$payment}','{$categoryName}')";
 $ret = exec_update($sql);
-//print_r($ret);exit();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">

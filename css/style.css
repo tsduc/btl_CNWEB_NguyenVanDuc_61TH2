@@ -1136,7 +1136,11 @@ hr{
     padding: 0 5px; 
     vertical-align: middle;
 }
-.service-left .show-more{
+.hiden-btn{
+    background: white;
+    border: white;
+}
+.service-left #show-more{
     display: none;
 }
 .service-right li{
@@ -1200,6 +1204,9 @@ hr{
     width: 71px;
 }
 
+.hiden{
+    cursor: pointer;
+}
 /* title botom */
 .title-bottom{
     width: 100%;

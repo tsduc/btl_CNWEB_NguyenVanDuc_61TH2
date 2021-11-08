@@ -1064,44 +1064,46 @@ include("lib_db.php");
                                     <a href="#">Tìm hiểu về mua trả góp</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xem thêm <i onclick="showMore()" class="fas fa-sort-down"></i></a>
+                                    <button id="hiden-but" onclick="showMore()" href="">Xem thêm <i class="fas fa-sort-down"></i></button>
                                 </li>
-                                <li class="show-more">
-                                    <a href="#">Chính sách bảo hành</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Chính sách đổi trả</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Giao hàng, lắp đặt</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Hướng dẫn mua online</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Bán hàng doanh nghiệp</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Phiếu mua hàng</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">In hóa đơn điện tử</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Quy chế hoạt động</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Nội quy cửa hàng</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Chất lượng phục vụ</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Cảnh báo giả mạo</a>
-                                </li>
-                                <li class="show-more">
-                                    <a href="#">Chính sách khui hộp sản phẩm Apple</a>
-                                </li>
+                                <div id="show-more">
+                                    <li>
+                                        <a href="#">Chính sách bảo hành</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Chính sách đổi trả</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Giao hàng, lắp đặt</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hướng dẫn mua online</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bán hàng doanh nghiệp</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Phiếu mua hàng</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">In hóa đơn điện tử</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Quy chế hoạt động</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Nội quy cửa hàng</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Chất lượng phục vụ</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Cảnh báo giả mạo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Chính sách khui hộp sản phẩm Apple</a>
+                                    </li>
+                                </div>
 
                             </ul>
                         </div>
@@ -1181,6 +1183,7 @@ include("lib_db.php");
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/login.js"></script>
     <script type="text/javascript">
         $('.list-product').slick({
             infinite: true,
