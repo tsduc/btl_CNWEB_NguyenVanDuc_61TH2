@@ -1,10 +1,8 @@
 <?php
+include("check-logged.php");
+$user = checkLoggedUser();
 include("lib_db.php");
 $id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
-include("check-logged.php");
-if (isset($id)) {
-    checkLoggedUser($id);
-}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -36,7 +34,7 @@ if (isset($id)) {
             <div class="header-mid">
                 <section>
                     <div class="section-logodmx">
-                        <a href="index.php"><img class="logo-dmx" src="images/Capturedmx.PNG" alt=""></a>
+                        <a href="./index.php"><img class="logo-dmx" src="images/Capturedmx.PNG" alt=""></a>
                     </div>
                     <div class="space"></div>
                     <div class="section-address">
@@ -52,12 +50,12 @@ if (isset($id)) {
                         </button>
                     </div>
                     <div class="section-cart">
-                        <a href="cart.php">
+                        <a href="./cart.php">
                             <img src="images/Captudre-removebg-preview.png" alt="">
                             <span>Giỏ hàng</span>
                         </a>
                     </div>
-                    <a href="cart.php" class="order-history">Lịch sử đơn hàng</a>
+                    <a href="./cart.php" class="order-history">Lịch sử đơn hàng</a>
                     <div class="space"></div>
                     <div class="n-space"></div>
                     <div class="header-content">
@@ -66,7 +64,7 @@ if (isset($id)) {
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="logout.php" class="kitchen">Đăng suất</a>
+                        <a href="./logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 

@@ -1,15 +1,7 @@
 <?php
+include("check-logged.php");
+$user = checkLoggedUser();
 include("lib_db.php");
-$sql = "SELECT * FROM account_login order by id desc limit 1";
-$acc = select_one($sql);
-
-$sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
-
-$id_user = select_one($sql);
-
-$_SESSION["username"] = "$acc[username]";
-
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -42,7 +34,7 @@ $_SESSION["username"] = "$acc[username]";
             <div class="header-mid">
                 <section>
                     <div class="section-logodmx">
-                        <a href="index.php"><img class="logo-dmx" src="images/Capturedmx.PNG" alt=""></a>
+                        <a href="./index.php"><img class="logo-dmx" src="images/Capturedmx.PNG" alt=""></a>
                     </div>
                     <div class="space"></div>
                     <div class="section-address">
@@ -58,12 +50,12 @@ $_SESSION["username"] = "$acc[username]";
                         </button>
                     </div>
                     <div class="section-cart">
-                        <a href="cart.php">
+                        <a href="./cart.php">
                             <img src="images/Captudre-removebg-preview.png" alt="">
                             <span>Giỏ hàng</span>
                         </a>
                     </div>
-                    <a href="cart.php" class="order-history">Lịch sử đơn hàng</a>
+                    <a href="./cart.php" class="order-history">Lịch sử đơn hàng</a>
                     <div class="space"></div>
                     <div class="n-space"></div>
                     <div class="header-content">
@@ -72,7 +64,7 @@ $_SESSION["username"] = "$acc[username]";
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="logout.php" class="kitchen">Đăng suất</a>
+                        <a href="./logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 
@@ -83,7 +75,7 @@ $_SESSION["username"] = "$acc[username]";
                     <div class="section-category">
                         <div class="category">
                             <span>Danh mục<i class="fas fa-sort-down"></i></span>
-                            <a class="all" href="#">Tất cả nhóm hàng</a>
+                            <a class="all" href="index.php">Tất cả nhóm hàng</a>
                             <div class="banner-top-left">
                                 <ul>
                                     <li id="show-tivi">

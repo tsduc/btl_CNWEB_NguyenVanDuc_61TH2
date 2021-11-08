@@ -1,4 +1,6 @@
 <?php
+include("check-logged.php");
+$user = checkLoggedUser();
 include("lib_db.php");
 $sql = "SELECT * FROM account_login order by id desc limit 1";
 $acc = select_one($sql);
@@ -6,10 +8,7 @@ $sql = "SELECT * FROM grab_user WHERE username = '$acc[username]' ";
 $id_user = select_one($sql);
 $id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
 
-include("check-logged.php");
-if (isset($id)) {
-    checkLoggedUser($id);
-}
+
 $q = isset($_REQUEST["q"]) ? $_REQUEST["q"] : '';
 $qsessionname = "___Q___";
 if (!isset($_REQUEST["q"])) {
@@ -58,7 +57,7 @@ $result = select_list($sql);
             <div class="header-mid">
                 <section>
                     <div class="section-logodmx">
-                        <a href="index.php"><img class="logo-dmx" src="images/Capturedmx.PNG" alt=""></a>
+                        <a href="./index.php"><img class="logo-dmx" src="images/Capturedmx.PNG" alt=""></a>
                     </div>
                     <div class="space"></div>
                     <div class="section-address">
@@ -76,12 +75,12 @@ $result = select_list($sql);
                         </form>
                     </div>
                     <div class="section-cart">
-                        <a href="cart.php">
+                        <a href="./cart.php">
                             <img src="images/Captudre-removebg-preview.png" alt="">
                             <span>Giỏ hàng</span>
                         </a>
                     </div>
-                    <a href="cart.php" class="order-history">Lịch sử đơn hàng</a>
+                    <a href="./cart.php" class="order-history">Lịch sử đơn hàng</a>
                     <div class="space"></div>
                     <div class="n-space"></div>
                     <div class="header-content">
@@ -90,7 +89,7 @@ $result = select_list($sql);
                         <div class="space"></div>
                         <a href="#" class="promotion">Khuyễn mãi</a>
                         <div class="space"></div>
-                        <a href="logout.php" class="kitchen">Đăng suất</a>
+                        <a href="./logout.php" class="kitchen">Đăng suất</a>
                     </div>
 
 
@@ -116,28 +115,28 @@ $result = select_list($sql);
                                             <span class="tivi-volume">
                                                 <img src="images/z2827202144074_04fac587c34448d24f3cb03bc447a50c.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrtivi[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrloa[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrtivi[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrloa[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-tivi">
                                             <div>
-                                                <p><?php echo $arrtivi[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrtivi[3]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrtivi[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrtivi[3]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php for ($i = 0; $i < 10; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDtivi[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDtivi[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrloa[1]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrloa[2]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrloa[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrloa[2]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrDloa as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
                                                 <p><?php echo $arrtivi[2]; ?></p>
                                                 <?php foreach ($arrDtivie as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -153,22 +152,22 @@ $result = select_list($sql);
                                             <span class="fridge">
                                                 <img src="images/z2827202143526_2a77f1aa1da1eecfd44a94e8d295cf8e.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfridge[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDfridged[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfridge[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDfridged[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-fridge">
                                             <div>
-                                                <p><?php echo $arrDfridge[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfridge[2]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDfridge[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfridge[2]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrfridge as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDfridged[1]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDfridged[2]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDfridged[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDfridged[2]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arrfridged as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -185,28 +184,28 @@ $result = select_list($sql);
                                             <span class="washing">
                                                 <img src="images/z2827202143405_ecd9e168d97af76d203777891218c6c8.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDwashing[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDdryer[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDwashing[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDdryer[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-washing">
                                             <div>
-                                                <p><?php echo $arrDwashing[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDwashing[3]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDwashing[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDwashing[3]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrwashing as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDdryer[1]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDdryer[2]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDdryer[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDdryer[2]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arrdryer as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
                                                 <p><?php echo $arrDwashing[2]; ?></p>
                                                 <?php foreach ($arrwashinge as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -223,29 +222,29 @@ $result = select_list($sql);
                                             <span class="harmonic">
                                                 <img src="images/z2827202142942_5f8afbc42f31ecca41ed0e1a2ea3a1f1.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDconditioner[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDfandh[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDconditioner[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDfandh[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-harmonic">
                                             <div>
-                                                <p><?php echo $arrDconditioner[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDconditioner[2]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDconditioner[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDconditioner[2]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrconditioner as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDfandh[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfandh[3]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDfandh[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfandh[3]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrfandh as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDfandh[2]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfandh[3]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDfandh[2]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDfandh[3]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arrfandhe as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -265,60 +264,60 @@ $result = select_list($sql);
                                             <span class="elec-tool">
                                                 <img src="images/z2827202141363_2ede65c36dfe8c2875998368bc57b045.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDgd[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDdc[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDgd[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDdc[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-electool">
                                             <div class="pots">
                                                 <p><?php echo $arrDgd[1]; ?></p>
                                                 <?php for ($i = 0; $i < 4; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgd[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgd[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDgd[2]; ?></p>
                                                 <?php for ($i = 4; $i < 10; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgd[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgd[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="stove">
                                                 <p><?php echo $arrDgd[3]; ?></p>
                                                 <?php for ($i = 0; $i < 6; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgde[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgde[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDgd[4]; ?></p>
                                                 <?php for ($i = 6; $i < 10; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgde[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgde[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="electric">
                                                 <p><?php echo $arrDgd[5]; ?></p>
                                                 <?php foreach ($arrgdt as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="healthy">
                                                 <p><?php echo $arrDgd[6]; ?></p>
                                                 <?php for ($i = 0; $i < 6; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgdu[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgdu[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
-                                                <p><?php echo $arrDgd[7]; ?> <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDgd[8]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDgd[7]; ?> <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDgd[8]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php for ($i = 6; $i < 10; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgdu[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrgdu[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="repair">
                                                 <p><?php echo $arrDdc[1]; ?></p>
                                                 <?php foreach ($arrdcu as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDdc[2]; ?></p>
                                                 <?php foreach ($arrduce as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -338,20 +337,20 @@ $result = select_list($sql);
                                             <span class="kitchen-utensils">
                                                 <img src="images/z2827202140284_6f8ccaddba3935205c429fbb5d9341d8.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDpot[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDmom[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDpot[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDmom[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-kitchen-utensils">
                                             <div>
                                                 <p><?php echo $arrDpot[1]; ?></p>
                                                 <?php for ($i = 0; $i < 6; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrstove[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrstove[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDpot[2]; ?></p>
                                                 <?php for ($i = 6; $i < 10; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrstove[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrstove[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="kitch">
@@ -361,31 +360,31 @@ $result = select_list($sql);
                                                 <div class="kitchennn">
                                                     <div class="kitch-left">
                                                         <?php foreach ($arrstovee as $item) { ?>
-                                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                         <?php } ?>
                                                         <br>
                                                         <p><?php echo $arrDpot[4]; ?></p>
                                                         <?php foreach ($arrstoveu as $item) { ?>
-                                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                         <?php } ?>
                                                     </div>
                                                     <div class="kitch-right">
                                                         <?php foreach ($arrstovet as $item) { ?>
-                                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                         <?php } ?>
                                                         <br>
                                                         <br>
                                                         <p><?php echo $arrDmom[2]; ?></p>
                                                         <?php foreach ($arrmome as $item) { ?>
-                                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDmom[1]; ?> <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDmom[3]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDmom[1]; ?> <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDmom[3]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arrmom as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -401,21 +400,21 @@ $result = select_list($sql);
                                             <span class="water-purifier">
                                                 <img src="images/z2827202140283_f80ed549a087b83a2d7245e2a36c631e.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDpure[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDheater[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDpure[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDheater[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-water-purifier">
                                             <div>
                                                 <p><?php echo $arrDpure[1]; ?></p>
                                                 <?php foreach ($arrpure as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
                                                 <p><?php echo $arrDheater[1]; ?> </p>
                                                 <?php foreach ($arrheater as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -434,50 +433,50 @@ $result = select_list($sql);
                                             <span class="mobi-laptab">
                                                 <img src="images/z2827202139837_9e0b333b083d1afc5b5a57adc47d0cb2.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDmobi[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDmobi[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-mobile">
                                             <div class="mobile">
-                                                <p><?php echo $arrDmobi[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDmobi[2]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDmobi[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDmobi[2]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrmobi as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="mobile">
-                                                <p><?php echo $arrDlap[1]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDlap[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrlap as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="tablet">
-                                                <p><?php echo $arrDlap[2]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDlap[2]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrtab as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div class="mobile">
-                                                <p><?php echo $arrDlap[3]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDlap[3]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php for ($i = 0; $i < 5; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrscreen[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrscreen[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
-                                                <p><?php echo $arrDlap[4]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDlap[4]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php for ($i = 5; $i < 8; $i++) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrscreen[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrscreen[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDlap[5]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDlap[5]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDlap[6]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrprint as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -497,45 +496,45 @@ $result = select_list($sql);
                                             <span class="accessory">
                                                 <img src="images/z2827202139461_5ba894d9f199520b055d61d8af13fc32.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"> <?php echo $arrDwatch[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"> <?php echo $arrDwatch[0]; ?></a>,
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-accessory">
                                             <div>
-                                                <p><?php echo $arrDwatch[1]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDwatch[3]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDwatch[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDwatch[3]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arrwatch as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                                 <br>
-                                                <p><?php echo $arrDwatch[2]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDwatch[3]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDwatch[2]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDwatch[3]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arrwatche as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDaccessory[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[5]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDaccessory[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[5]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arraccessory as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                                 <br>
-                                                <p><?php echo $arrDaccessory[2]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[5]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDaccessory[2]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[5]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arraccessorye as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
                                                 <p><?php echo $arrDaccessory[3]; ?></p>
                                                 <?php foreach ($arraccessoryt as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                                 <br>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDaccessory[4]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[5]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDaccessory[4]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDaccessory[5]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arraccessoryu as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -552,54 +551,54 @@ $result = select_list($sql);
                                             <span class="old-machine">
                                                 <img src="images/z2827202139324_e2d1fe066730cb8cbbcaa65258a9a8ca.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDold[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDold[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-old-machine">
                                             <div>
                                                 <p><?php echo $arrDold[1]; ?></p>
                                                 <?php for ($i = 0; $i < 3; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrold[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrold[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
-                                                <p><?php echo $arrDold[2]; ?><a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDold[9]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDold[2]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDold[9]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php for ($i = 3; $i < 9; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrold[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrold[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
                                                 <p><?php echo $arrDold[3]; ?></p>
                                                 <?php for ($i = 0; $i < 2; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrolde[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrolde[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDold[4]; ?></p>
                                                 <?php for ($i = 2; $i < 4; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrolde[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrolde[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
                                                 <p><?php echo $arrDold[5]; ?></p>
                                                 <?php for ($i = 0; $i < 2; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldt[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldt[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDold[6]; ?></p>
                                                 <?php for ($i = 2; $i < 5; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldt[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldt[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDold[7]; ?><a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDold[9]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDold[7]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDold[9]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php for ($i = 0; $i < 6; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldu[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldu[$i]; ?></a>
                                                 <?php } ?>
                                                 <br>
                                                 <p><?php echo $arrDold[8]; ?></p>
                                                 <?php for ($i = 6; $i < 10; $i++) {  ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldu[$i]; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arroldu[$i]; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -615,22 +614,22 @@ $result = select_list($sql);
                                             <span class="bike-accessory">
                                                 <img src="images/z2827202139323_f3a06bcb99fb19c68ff00507ccc6fd1f.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDbike[0]; ?></a>,
-                                            <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"> <?php echo $arrDaccbike[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDbike[0]; ?></a>,
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"> <?php echo $arrDaccbike[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-bike">
                                             <div>
-                                                <p><?php echo $arrDbike[1]; ?><a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDbike[2]; ?><i class="fas fa-caret-right"></i></a>
+                                                <p><?php echo $arrDbike[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $arrDbike[2]; ?><i class="fas fa-caret-right"></i></a>
                                                 </p>
                                                 <?php foreach ($arrbike as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[0]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                             <div>
-                                                <p><?php echo $arrDbike[1]; ?><a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDbike[2]; ?><i class="fas fa-caret-right"></i></a></p>
+                                                <p><?php echo $arrDbike[1]; ?><a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $arrDbike[2]; ?><i class="fas fa-caret-right"></i></a></p>
                                                 <?php foreach ($arraccbike as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results[1]["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -644,14 +643,14 @@ $result = select_list($sql);
                                             <span class="useful">
                                                 <img src="images/z2827202138775_0762a4e8fafeaf443d98b64e23d701f9.jpg" alt="">
                                             </span>
-                                            <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDuseful[0]; ?></a>
+                                            <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $arrDuseful[0]; ?></a>
                                             <p>›</p>
                                         </div>
                                         <div class="show-right-hiden" id="hiden-useful">
                                             <div>
                                                 <p><?php echo $arrDuseful[1]; ?></p>
                                                 <?php foreach ($arruseful as $item) { ?>
-                                                    <a href="danh-muc.php?id=<?php echo $results["id"]; ?>"><?php echo $item; ?></a>
+                                                    <a href="./chuyen-muc.php.php?id=<?php echo $results["id"]; ?>"><?php echo $item; ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -679,7 +678,7 @@ $result = select_list($sql);
                 <h1>Giỏ hàng của bạn</h1>
                 <br />
                 <form method="GET" action="cart.php">
-                    <button class="add-product-cart"><a href="index.php">add product</a></button>
+                    <button class="add-product-cart"><a href="./index.php">add product</a></button>
                 </form>
                 <table>
                     <tr>
@@ -729,8 +728,8 @@ $result = select_list($sql);
                             <td><?php echo ($price); ?>₫</td>
                             <td><?php echo $item['quantity']; ?></td>
                             <td><?php echo $price * $item['quantity']; ?>₫</td>
-                            <td><a href="user-edit.php?id=<?php echo $item['productid']; ?>">Edit</a></td>
-                            <td><a href="user-delete.php?id=<?php echo $item['productid']; ?>">Delete</a></td>
+                            <td><a href="./user-edit.php?id=<?php echo $item['productid']; ?>">Edit</a></td>
+                            <td><a href="./user-delete.php?id=<?php echo $item['productid']; ?>">Delete</a></td>
                         </tr>
                     <?php } ?>
                     <tr>

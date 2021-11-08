@@ -11,7 +11,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn chưa nhập fullname');
-                    window.location.href='register.php';
+                    window.location.href='./register.php';
                 </script>
 
             ";
@@ -19,7 +19,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn chưa nhập email');
-                    window.location.href='register.php';
+                    window.location.href='./register.php';
                 </script>
 
             ";
@@ -27,7 +27,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn chưa nhập username');
-                    window.location.href='register.php';
+                    window.location.href='./register.php';
                 </script>
 
             ";
@@ -35,7 +35,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn chưa nhập password');
-                    window.location.href='register.php';
+                    window.location.href='./register.php';
                 </script>
 
             ";
@@ -43,7 +43,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn chưa nhập phone');
-                    window.location.href='register.php';
+                    window.location.href='./register.php';
                 </script>
 
             ";;
@@ -65,7 +65,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Tên đăng nhập tồn tại');
-                    window.location.href='register.php';
+                    window.location.href='./register.php';
                 </script>
 
             ";
@@ -77,7 +77,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn đã đăng kí thành công');
-                    window.location.href='login.php';
+                    window.location.href='./login.php';
                 </script>
 
             ";

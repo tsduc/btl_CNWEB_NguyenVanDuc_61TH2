@@ -1,6 +1,6 @@
     <?php
     include("lib_db.php");
-
+    session_start();
     $name = $_POST['username'];
     $pass = $_POST['password'];
 
@@ -12,19 +12,21 @@
     if (!empty($result_admin['username'])) {
         $acc = "insert into account_login (username, password) values('" . $name . "', '" . $pass . "')";
         $ret = exec_update($acc);
+        $_SESSION["username"] = "$name";
         echo "
                 <script type='text/javascript'>
                     window.alert('Xin chào admin!');
-                    window.location.href='admin.php';
+                    window.location.href='./admin.php';
                 </script>
             ";
     } elseif (!empty($result_user['username'])) {
         $acc = "insert into account_login (username, password) values('" . $name . "', '" . $pass . "')";
         $ret = exec_update($acc);
+        $_SESSION["username"] = "$name";
         echo "
                 <script type='text/javascript'>
                     window.alert('Chào mừng bạn đến với điện máy xanh!');
-                    window.location.href='index.php';
+                    window.location.href='./index.php';
                 </script>
 
             ";
@@ -32,7 +34,7 @@
         echo "
                 <script type='text/javascript'>
                     window.alert('Bạn đã sai tên đăng nhập hoặc mật khẩu');
-                    window.location.href='login.php';
+                    window.location.href='./login.php';
                 </script>
             ";
     }; ?>

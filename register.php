@@ -38,7 +38,7 @@
             </div>
             <div class="sub-registri">
                 <button type="submit">Đăng ký</button>
-                <a href="login.php">bạn đã có tài khoản?</a>
+                <a href="./login.php">bạn đã có tài khoản?</a>
             </div>
         </form>
     </div>

@@ -649,7 +649,7 @@ a:hover{
     display: block;
 }
 .list-product{
-    margin: 10px 0 50px 0;
+    margin: 20px 0 50px 0;
 }
 .container, .row, .col{
     margin: 0;
@@ -657,7 +657,7 @@ a:hover{
 }
 .product{
     width: 240px;
-    height: 600px;
+    height: 570px;
     margin: 0;
     padding: 10px;
     float: left;
