@@ -60,8 +60,8 @@ $num = ceil($total / $nop);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="shortcut icon" href="images/logodmx.png"> -->
-    <title>Siêu thị Điện máy XANH - Mua bán điện tử, điện lạnh, gia dụng</title>
+    <link rel="shortcut icon" href="images/logodmx.png">
+    <title>Admin</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
@@ -1012,15 +1012,6 @@ $num = ceil($total / $nop);
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chi-tiet.js"></script>
-    <script type="text/javascript">
-        $('#product-top, #tivi, #refrigeration, #water-purifier, #appliances, #bikes, #phones, #accessory, #smartWatch').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: true,
-            dots: false,
-            items: 1
-        })
-    </script>
 </body>
 
 </html>
